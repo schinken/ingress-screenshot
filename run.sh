@@ -2,6 +2,7 @@
 
 # Firefox settings
 FF_PROFILE="example"
+FF_PROFILE_DIR="et9az2vp.example"
 FF_WAIT=42
 FF_URL="http://www.ingress.com/intel?ll=49.884386,10.89515&z=14"
 
@@ -28,7 +29,7 @@ XVFB_PID=$1
 while true
 do
     # Remove parent lock to prevent error message "firefox has been shutdown unexpectly..."
-    rm ~/.mozilla/firefox/wvnf3tre.ingress/.parentlock
+    rm ~/.mozilla/firefox/${FF_PROFILE_DIR}/.parentlock
 
     echo "Running firefox -P $FF_PROFILE on $XVFB_DISPLAY "
     DISPLAY=:${XVFB_DISPLAY} firefox -P $FF_PROFILE -width $XVFB_RES_WIDTH -height $XVFB_RES_HEIGHT "$FF_URL" > /dev/null &
