@@ -20,7 +20,7 @@ SCREENSHOT_HEIGHT=720
 
 # Crop offset for screenshot
 SCREENSHOT_OFFSET_LEFT=220
-SCREENSHOT_OFFSET_RIGHT=220
+SCREENSHOT_OFFSET_TOP=220
 
 echo "Staring XVFB on $XVFB_DISPLAY"
 Xvfb :${XVFB_DISPLAY} -screen 0 ${XVFB_RES_WIDTH}x${XVFB_RES_HEIGHT}x24 -nolisten tcp 2> /dev/null &
@@ -42,7 +42,7 @@ do
 
     echo "Taking screenshot. Please smile!"
     HAM_DATE=`date +"%Y-%m-%d_%H-%M-%S"`
-    DISPLAY=:${XVFB_DISPLAY} import -window root -crop ${SCREENSHOT_WIDTH}x${SCREENSHOT_HEIGHT}+${SCREENSHOT_OFFSET_LEFT}+${SCREENSHOT_OFFSET_RIGHT} "ingr-$HAM_DATE".png
+    DISPLAY=:${XVFB_DISPLAY} import -window root -crop ${SCREENSHOT_WIDTH}x${SCREENSHOT_HEIGHT}+${SCREENSHOT_OFFSET_LEFT}+${SCREENSHOT_OFFSET_TOP} "ingr-$HAM_DATE".png
 
     echo "Killing firefox on PID $FF_PID"
     kill $FF_PID
