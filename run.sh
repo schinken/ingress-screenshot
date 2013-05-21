@@ -24,7 +24,7 @@ SCREENSHOT_OFFSET_TOP=220
 
 echo "Staring XVFB on $XVFB_DISPLAY"
 Xvfb :${XVFB_DISPLAY} -screen 0 ${XVFB_RES_WIDTH}x${XVFB_RES_HEIGHT}x24 -nolisten tcp 2> /dev/null &
-XVFB_PID=$1
+XVFB_PID=$!
 
 while true
 do
