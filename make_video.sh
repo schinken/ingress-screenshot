@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TMP_DIRECTORY="sorted"
+export TMP_DIRECTORY="sorted"
 VIDEO_FNAME="output.mp4"
 
 echo "Removing existing $TMP_DIRECTORY"
