@@ -15,4 +15,4 @@ ls ingr-*.png | gawk 'BEGIN{ a=1 }{ printf "ln -s ../%s ${TMP_DIRECTORY}/ingr_%0
 
 cd $TMP_DIRECTORY
 
-avconv -r1 -f image2 -i ingr_%04d.png -c:v libx264 -maxrate:v 20000k -minrate:v 16000k  -c:a n -s 1280x720 -r $VIDEO_FPS $VIDEO_FNAME
+avconv -r 1 -f image2 -i ingr_%04d.png -c:v libx264 -maxrate:v 20000k -minrate:v 16000k  -c:a n -s 1280x720 -r $VIDEO_FPS $VIDEO_FNAME
