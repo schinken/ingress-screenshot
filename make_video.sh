@@ -10,7 +10,7 @@ rm -rf $TMP_DIRECTORY
 echo "Creating $TMP_DIRECTORY"
 mkdir $TMP_DIRECTORY
 
-echo "Coping all ingr- files to $TMP_DIRECTORY"
+echo "Copying all ingr- files to $TMP_DIRECTORY"
 ls ingr-*.png | gawk 'BEGIN{ a=1 }{ printf "ln -s ../%s ${TMP_DIRECTORY}/ingr_%04d.png\n", $0, a++ }' | bash
 
 cd $TMP_DIRECTORY
