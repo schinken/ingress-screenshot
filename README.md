@@ -4,7 +4,7 @@
 Takes ingress screenshots with a headless firefox and make a video of those screenshots afterward
 
 ## Firefox Setup
-### Create Profile ===
+### Create Profile
 
 First you have to set up a new profile for Firefox. You can easily do this by just typing
 
@@ -65,7 +65,7 @@ Simply run the bash script with:
 
 After a couple of minutes/seconds your first screenshot should appear in your current directory.
 
-## Creating a Video ==
+## Creating a Video
 
 To create a video there is also a simple bash script in the git repository. Just run
 
