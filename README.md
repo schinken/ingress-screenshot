@@ -1,11 +1,10 @@
-ingress-screenshot
-==================
+# ingress-screenshot
+
 
 Takes ingress screenshots with a headless firefox and make a video of those screenshots afterward
 
-== Firefox Setup ==
-
-=== Create Profile ===
+## Firefox Setup
+### Create Profile ===
 
 First you have to set up a new profile for Firefox. You can easily do this by just typing
 
@@ -28,7 +27,7 @@ Start firefox with your profile by clicking on "Start Firefox" or run it from co
 
  firefox -P ingress_cityname
 
-=== Log in to Google Account ===
+### Log in to Google Account
 
 To watch the intel map you need to log in to your Google account.
 
@@ -36,13 +35,13 @@ To watch the intel map you need to log in to your Google account.
 * Log in to your Google account
 * Allow Ingress to access your Google account
 
-=== Choose your Viewport ===
+### Choose your Viewport
 
 On the Ingress intel map, just zoom in to the location you want to capture, and copy the link by using the "link" symbol in the upper right-hand corner. This link contains lat/lon coordinates and the zoom level of your current view.
 
-== Taking Screenshots ==
+## Taking Screenshots
 
-=== Dependencies ===
+### Dependencies
 
 First you need to have these tools installed:
 
@@ -52,7 +51,7 @@ First you need to have these tools installed:
 
 You can install these scripts with the package manager of the linux distribution of your choice.
 
-=== Start Script ===
+### Start Script
 
 Just create a clone of the ingress-screenshot repository somewhere:
 
@@ -66,7 +65,7 @@ Simply run the bash script with:
 
 After a couple of minutes/seconds your first screenshot should appear in your current directory.
 
-== Creating a Video ==
+## Creating a Video ==
 
 To create a video there is also a simple bash script in the git repository. Just run
 
@@ -75,17 +74,17 @@ To create a video there is also a simple bash script in the git repository. Just
 This will do the dirty work for you.
 
 
-== FAQ ==
+## FAQ 
 
-=== Needed ===
+### Needed
 
   sudo apt-get install libavcodec-extra-53 imagemagick xvfb 
 
-=== Xlib:  extension "RANDR" missing on display ":23". ===
+### Xlib:  extension "RANDR" missing on display ":23". 
 
 This is mostly just a warning, and everything will work fine
 
-=== run.sh: import: Command not found ===
+### run.sh: import: Command not found
 
 Make sure you have imagemagick installed. Install it on Ubuntu with this command:
  
