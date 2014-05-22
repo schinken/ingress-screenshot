@@ -12,7 +12,7 @@ XVFB_RES_HEIGHT=1080
 XVFB_DISPLAY=23
 
 # Interval between screenshots
-SCREENSHOT_INTERVAL=300
+SCREENSHOT_INTERVAL=60
 
 # Dimensions of screenshot (cropped)
 SCREENSHOT_WIDTH=1280
@@ -43,6 +43,13 @@ do
     echo "Taking screenshot. Please smile!"
     HAM_DATE=`date +"%Y-%m-%d_%H-%M-%S"`
     DISPLAY=:${XVFB_DISPLAY} import -window root -crop ${SCREENSHOT_WIDTH}x${SCREENSHOT_HEIGHT}+${SCREENSHOT_OFFSET_LEFT}+${SCREENSHOT_OFFSET_TOP} "ingr-$HAM_DATE".png
+    
+    XTEXT=`expr $SCREENSHOT_WIDTH - 50`
+    YTEXT=`expr $SCREENSHOT_HEIGHT + 175`
+    STRINGTEXT="text $XTEXT,$YTEXT '"
+    PRETTY_DATE=`date +"%d-%m-%Y %H:%M:%S"`
+    STRINGTEXT="$STRINGTEXT$PRETTY_DATE'"
+	 convert -pointsize 20 -fill yellow -draw "$STRINGTEXT" ingr-$HAM_DATE.png ingr-$HAM_DATE.png
 
     echo "Killing firefox on PID $FF_PID"
     kill $FF_PID
