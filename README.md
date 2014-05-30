@@ -1,5 +1,6 @@
 # ingress-screenshot
 
+
 Takes ingress screenshots with a headless firefox and make a video of those screenshots afterward
 
 Project Website: https://www.hackerspace-bamberg.de/Ingress_Timelapse
@@ -9,7 +10,9 @@ Project Website: https://www.hackerspace-bamberg.de/Ingress_Timelapse
 
 First you have to set up a new profile for Firefox. You can easily do this by just typing
 
-    firefox -P
+````bash
+firefox -P
+````
 
 into a terminal window while no other firefox window is opened. Firefox will now prompt you to create a new profile.
 
@@ -26,7 +29,9 @@ Firefox has now created a new user directory inside your home.
 
 Start firefox with your profile by clicking on "Start Firefox" or run it from console with:
 
- firefox -P ingress_cityname
+````bash
+firefox -P ingress_cityname
+````
 
 ### Log in to Google Account
 
@@ -56,23 +61,31 @@ You can install these scripts with the package manager of the linux distribution
 
 Just create a clone of the ingress-screenshot repository somewhere:
 
- git clone https://github.com/schinken/ingress-screenshot
+````bash
+git clone https://github.com/schinken/ingress-screenshot
+````
 
 and configure the run.sh-script with your favorite text editor (vim, emacs, etc..). The parameter names should be self-explanatory.
 
 Simply run the bash script with:
 
-    ./run.sh
+````bash
+./run.sh
+````
 
 After a couple of minutes/seconds your first screenshot should appear in your current directory. It is possible to place a timestamp on every picture. To do this use the option -t
     
-    ./run.sh -t  
+````bash
+./run.sh -t  
+````
 
 ## Creating a Video
 
 To create a video there is also a simple bash script in the git repository. Just run
 
+````bash
  ./make_video.sh 
+````
 
 This will do the dirty work for you.
 
@@ -81,7 +94,9 @@ This will do the dirty work for you.
 
 ### Needed
 
-  sudo apt-get install libavcodec-extra-53 imagemagick xvfb 
+````bash
+sudo apt-get install libavcodec-extra-53 imagemagick xvfb 
+````
 
 ### Xlib:  extension "RANDR" missing on display ":23". 
 
@@ -90,5 +105,7 @@ This is mostly just a warning, and everything will work fine
 ### run.sh: import: Command not found
 
 Make sure you have imagemagick installed. Install it on Ubuntu with this command:
- 
-  sudo apt-get install imagemagick
+
+````bash 
+sudo apt-get install imagemagick
+````
