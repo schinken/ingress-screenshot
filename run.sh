@@ -26,6 +26,16 @@ echo "Staring XVFB on $XVFB_DISPLAY"
 Xvfb :${XVFB_DISPLAY} -screen 0 ${XVFB_RES_WIDTH}x${XVFB_RES_HEIGHT}x24 -noreset -nolisten tcp 2> /dev/null &
 XVFB_PID=$!
 
+function add_timestamp {
+	img_name=$1
+	XTEXT=`expr $SCREENSHOT_WIDTH - 50`
+	YTEXT=`expr $SCREENSHOT_HEIGHT + 175`
+	STRINGTEXT="text $XTEXT,$YTEXT '"
+	PRETTY_DATE=`date +"%d-%m-%Y %H:%M:%S"`
+	STRINGTEXT="$STRINGTEXT$PRETTY_DATE'"
+	convert -pointsize 20 -fill yellow -draw "$STRINGTEXT" $img_name $img_name
+}
+
 while true
 do
     # Remove parent lock to prevent error message "firefox has been shutdown unexpectly..."
@@ -43,14 +53,18 @@ do
     echo "Taking screenshot. Please smile!"
     HAM_DATE=`date +"%Y-%m-%d_%H-%M-%S"`
     DISPLAY=:${XVFB_DISPLAY} import -window root -crop ${SCREENSHOT_WIDTH}x${SCREENSHOT_HEIGHT}+${SCREENSHOT_OFFSET_LEFT}+${SCREENSHOT_OFFSET_TOP} "ingr-$HAM_DATE".png
-    
-    XTEXT=`expr $SCREENSHOT_WIDTH - 50`
-    YTEXT=`expr $SCREENSHOT_HEIGHT + 175`
-    STRINGTEXT="text $XTEXT,$YTEXT '"
-    PRETTY_DATE=`date +"%d-%m-%Y %H:%M:%S"`
-    STRINGTEXT="$STRINGTEXT$PRETTY_DATE'"
-	 convert -pointsize 20 -fill yellow -draw "$STRINGTEXT" ingr-$HAM_DATE.png ingr-$HAM_DATE.png
-
+   while getopts ":t" opt; do
+	  case $opt in
+		t)
+		  add_timestamp ingr-$HAM_DATE.png
+		  ;;
+		\?)
+		  echo "Invalid option: -$OPTARG" >&2
+		  ;;
+	  esac
+	done
+	   
+	
     echo "Killing firefox on PID $FF_PID"
     kill $FF_PID
 
