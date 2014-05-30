@@ -61,9 +61,10 @@ and configure the run.sh-script with your favorite text editor (vim, emacs, etc.
 
 Simply run the bash script with:
 
- ./run.sh
+    ./run.sh
 
 After a couple of minutes/seconds your first screenshot should appear in your current directory. It is possible to place a timestamp on every picture. To do this use the option -t
+    
     ./run.sh -t  
 
 ## Creating a Video
