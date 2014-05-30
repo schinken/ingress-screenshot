@@ -1,7 +1,8 @@
 # ingress-screenshot
 
-
 Takes ingress screenshots with a headless firefox and make a video of those screenshots afterward
+
+Project Website: https://www.hackerspace-bamberg.de/Ingress_Timelapse
 
 ## Firefox Setup
 ### Create Profile
