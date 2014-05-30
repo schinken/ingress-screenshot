@@ -26,6 +26,16 @@ echo "Staring XVFB on $XVFB_DISPLAY"
 Xvfb :${XVFB_DISPLAY} -screen 0 ${XVFB_RES_WIDTH}x${XVFB_RES_HEIGHT}x24 -noreset -nolisten tcp 2> /dev/null &
 XVFB_PID=$!
 
+function add_timestamp {
+	img_name=$1
+	XTEXT=`expr $SCREENSHOT_WIDTH - 50`
+	YTEXT=`expr $SCREENSHOT_HEIGHT + 175`
+	STRINGTEXT="text $XTEXT,$YTEXT '"
+	PRETTY_DATE=`date +"%d-%m-%Y %H:%M:%S"`
+	STRINGTEXT="$STRINGTEXT$PRETTY_DATE'"
+	convert -pointsize 20 -fill yellow -draw "$STRINGTEXT" $img_name $img_name
+}
+
 while true
 do
     # Remove parent lock to prevent error message "firefox has been shutdown unexpectly..."
@@ -46,13 +56,7 @@ do
    while getopts ":t" opt; do
 	  case $opt in
 		t)
-		  echo "hallo"
-		  XTEXT=`expr $SCREENSHOT_WIDTH - 50`
-		  YTEXT=`expr $SCREENSHOT_HEIGHT + 175`
-		  STRINGTEXT="text $XTEXT,$YTEXT '"
-		  PRETTY_DATE=`date +"%d-%m-%Y %H:%M:%S"`
-		  STRINGTEXT="$STRINGTEXT$PRETTY_DATE'"
-		  convert -pointsize 20 -fill yellow -draw "$STRINGTEXT" ingr-$HAM_DATE.png ingr-$HAM_DATE.png
+		  add_timestamp ingr-$HAM_DATE.png
 		  ;;
 		\?)
 		  echo "Invalid option: -$OPTARG" >&2
