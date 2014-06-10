@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Firefox settings
-FF_PROFILE="ingress_krakow"
-FF_PROFILE_DIR="kjwuabfq.ingress_krakow"
+FF_PROFILE="example"
+FF_PROFILE_DIR="et9az2vp.example"
 FF_WAIT=42
-FF_URL="https://www.ingress.com/intel?ll=50.048058,19.947395&z=11"
+FF_URL="http://www.ingress.com/intel?ll=49.884386,10.89515&z=14"
 
 # Virtual X Server Settings
 XVFB_RES_WIDTH=1920
@@ -12,7 +12,7 @@ XVFB_RES_HEIGHT=1080
 XVFB_DISPLAY=23
 
 # Interval between screenshots
-SCREENSHOT_INTERVAL=10
+SCREENSHOT_INTERVAL=60
 
 # Dimensions of screenshot (cropped)
 SCREENSHOT_WIDTH=1280
