@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Firefox settings
-FF_PROFILE="example"
-FF_PROFILE_DIR="et9az2vp.example"
+FF_PROFILE="ingress_krakow"
+FF_PROFILE_DIR="kjwuabfq.ingress_krakow"
 FF_WAIT=42
-FF_URL="http://www.ingress.com/intel?ll=49.884386,10.89515&z=14"
+FF_URL="https://www.ingress.com/intel?ll=50.048058,19.947395&z=11"
 
 # Virtual X Server Settings
 XVFB_RES_WIDTH=1920
@@ -12,7 +12,7 @@ XVFB_RES_HEIGHT=1080
 XVFB_DISPLAY=23
 
 # Interval between screenshots
-SCREENSHOT_INTERVAL=60
+SCREENSHOT_INTERVAL=10
 
 # Dimensions of screenshot (cropped)
 SCREENSHOT_WIDTH=1280
@@ -22,6 +22,20 @@ SCREENSHOT_HEIGHT=720
 SCREENSHOT_OFFSET_LEFT=220
 SCREENSHOT_OFFSET_TOP=220
 
+#Setting for timestamp
+TIMESTAMP=false
+
+while getopts ":t" opt; do
+	  case $opt in
+		t)
+		  TIMESTAMP=true
+		  ;;
+		\?)
+		  echo "Invalid option: -$OPTARG" >&2
+		  ;;
+	  esac
+	done
+	
 echo "Staring XVFB on $XVFB_DISPLAY"
 Xvfb :${XVFB_DISPLAY} -screen 0 ${XVFB_RES_WIDTH}x${XVFB_RES_HEIGHT}x24 -noreset -nolisten tcp 2> /dev/null &
 XVFB_PID=$!
@@ -53,16 +67,9 @@ do
     echo "Taking screenshot. Please smile!"
     HAM_DATE=`date +"%Y-%m-%d_%H-%M-%S"`
     DISPLAY=:${XVFB_DISPLAY} import -window root -crop ${SCREENSHOT_WIDTH}x${SCREENSHOT_HEIGHT}+${SCREENSHOT_OFFSET_LEFT}+${SCREENSHOT_OFFSET_TOP} "ingr-$HAM_DATE".png
-   while getopts ":t" opt; do
-	  case $opt in
-		t)
-		  add_timestamp ingr-$HAM_DATE.png
-		  ;;
-		\?)
-		  echo "Invalid option: -$OPTARG" >&2
-		  ;;
-	  esac
-	done
+   if $TIMESTAMP; then
+		add_timestamp ingr-$HAM_DATE.png
+	fi
 	   
 	
     echo "Killing firefox on PID $FF_PID"
