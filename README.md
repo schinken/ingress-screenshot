@@ -25,7 +25,7 @@ Firefox has now created a new user directory inside your home.
 
  ~/.mozilla/firefox/$randomnum.ingress_yourcity
 
-'''Remember:''' If you want to take screenshots on a virtual machine/root-server you have to copy this profile to the machine using e.g. '''scp'''. Also edit and copy the profiles.ini in the firefox directory (probably ~/.mozilla/firefox/) file to your remote machine.
+'''Remember:''' If you want to take screenshots on a virtual machine/root-server you have to copy this profile to the machine using e.g. '''scp'''. Also copy and edit the profiles.ini file from ~/.mozilla/firefox/ to your remote machine.
 
 Start firefox with your profile by clicking on "Start Firefox" or run it from console with:
 
