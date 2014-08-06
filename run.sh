@@ -1,15 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
 # Firefox settings
 FF_PROFILE="example"
 FF_PROFILE_DIR="et9az2vp.example"
 FF_WAIT=42
 FF_URL="http://www.ingress.com/intel?ll=49.884386,10.89515&z=14"
-
-# Virtual X Server Settings
-XVFB_RES_WIDTH=1920
-XVFB_RES_HEIGHT=1080
-XVFB_DISPLAY=23
 
 # Interval between screenshots
 SCREENSHOT_INTERVAL=60
@@ -21,6 +16,11 @@ SCREENSHOT_HEIGHT=720
 # Crop offset for screenshot
 SCREENSHOT_OFFSET_LEFT=220
 SCREENSHOT_OFFSET_TOP=220
+
+# Virtual X Server Settings
+XVFB_RES_WIDTH=`expr $SCREENSHOT_WIDTH + 2 \* $SCREENSHOT_OFFSET_LEFT`
+XVFB_RES_HEIGHT=`expr $SCREENSHOT_HEIGHT + 2 \* $SCREENSHOT_OFFSET_TOP`
+XVFB_DISPLAY=23
 
 #Setting for timestamp
 TIMESTAMP=false
@@ -40,7 +40,7 @@ echo "Staring XVFB on $XVFB_DISPLAY"
 Xvfb :${XVFB_DISPLAY} -screen 0 ${XVFB_RES_WIDTH}x${XVFB_RES_HEIGHT}x24 -noreset -nolisten tcp 2> /dev/null &
 XVFB_PID=$!
 
-function add_timestamp {
+add_timestamp () {
 	img_name=$1
 	XTEXT=`expr $SCREENSHOT_WIDTH - 50`
 	YTEXT=`expr $SCREENSHOT_HEIGHT + 175`
@@ -54,6 +54,10 @@ while true
 do
     # Remove parent lock to prevent error message "firefox has been shutdown unexpectly..."
     rm ~/.mozilla/firefox/${FF_PROFILE_DIR}/.parentlock
+
+	# Flush cache to prevent "Reload page" message (this happens anyway, but not that often)
+	echo "Flushing cache "
+	rm -r ~/.cache/mozilla/firefox/${FF_PROFILE_DIR}/*
 
     echo "Running firefox -P $FF_PROFILE on $XVFB_DISPLAY "
     DISPLAY=:${XVFB_DISPLAY} firefox -P $FF_PROFILE -width $XVFB_RES_WIDTH -height $XVFB_RES_HEIGHT "$FF_URL" > /dev/null &
