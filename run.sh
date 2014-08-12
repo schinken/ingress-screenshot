@@ -53,11 +53,11 @@ add_timestamp () {
 while true
 do
     # Remove parent lock to prevent error message "firefox has been shutdown unexpectly..."
-    rm ~/.mozilla/firefox/${FF_PROFILE_DIR}/.parentlock
+    rm -f ~/.mozilla/firefox/${FF_PROFILE_DIR}/.parentlock
 
 	# Flush cache to prevent "Reload page" message (this happens anyway, but not that often)
 	echo "Flushing cache "
-	rm -r ~/.cache/mozilla/firefox/${FF_PROFILE_DIR}/*
+	rm -rf ~/.cache/mozilla/firefox/${FF_PROFILE_DIR}/*
 
     echo "Running firefox -P $FF_PROFILE on $XVFB_DISPLAY "
     DISPLAY=:${XVFB_DISPLAY} firefox -P $FF_PROFILE -width $XVFB_RES_WIDTH -height $XVFB_RES_HEIGHT "$FF_URL" > /dev/null &
